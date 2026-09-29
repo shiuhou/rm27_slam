@@ -1,6 +1,7 @@
 """TEST_FIXTURE_ONLY. Artificial images/calibration/output; never camera evidence."""
 import csv
 import json
+import os
 from pathlib import Path
 import sys
 
@@ -51,10 +52,13 @@ def make_dataset(root, count=18, step=1):
     return root/'dataset_manifest.json'
 
 
-def fake_install(root, backend):
-    root=Path(root);root.mkdir(parents=True)
-    binary=root/'fake_backend'
-    binary.write_text('#!'+sys.executable+'\n'+'''# TEST_FIXTURE_ONLY: emits predetermined poses, not SLAM.
+# The fixture stands in for a real backend binary, so it must be one host
+# executable the runner can launch with no shell: a shebang script on POSIX, and
+# a cmd/Python polyglot on Windows, which cannot exec a shebang script. Both stay
+# a single file so binary_sha256 and the inline hooks in test_slam_online cover
+# the exact artifact that is launched.
+_FAKE_BACKEND_HEADER_LINES = 4
+_FAKE_BACKEND_BODY = '''# TEST_FIXTURE_ONLY: emits predetermined poses, not SLAM.
 import sys
 from pathlib import Path
 args=sys.argv[1:]
@@ -65,8 +69,37 @@ rows=[line.split() for line in (sequence/'rgb.txt').read_text().splitlines() if 
 poses=[f'{row[0]} {i*.1} {(i*.1)**2} 0 0 0 0 1' for i,row in enumerate(rows)]
 (raw/('frame_trajectory.txt' if is_stella else 'KeyFrameTrajectory.txt')).write_text('\\n'.join(poses)+'\\n')
 if is_stella: (raw/'track_times.txt').write_text('0.001\\n'*len(rows))
-''')
+'''
+
+
+def fake_binary(root):
+    """Host-executable fake backend; arguments reach the body exactly as a binary's would."""
+    if os.name != 'nt':
+        binary = root/'fake_backend'
+        binary.write_text('#!'+sys.executable+'\n'+_FAKE_BACKEND_BODY)
+    else:
+        # cmd runs the header, then exits before the Python body, which the
+        # interpreter reads back out of this same file. Paths travel by
+        # environment because python -c consumes argv[0], so argv[1:] must stay
+        # the real arguments; %* forwards them unchanged.
+        bootstrap = ("import os,pathlib;"
+                     "src=pathlib.Path(os.environ['FAKE_BACKEND_SRC']).read_text();"
+                     f"exec(compile(src.split(chr(10),{_FAKE_BACKEND_HEADER_LINES})"
+                     f"[{_FAKE_BACKEND_HEADER_LINES}],'fake_backend','exec'))")
+        header = ['@echo off',
+                  'set "FAKE_BACKEND_SRC=%~f0"',
+                  f'"{sys.executable}" -c "{bootstrap}" %*',
+                  'exit /b %errorlevel%']
+        assert len(header) == _FAKE_BACKEND_HEADER_LINES
+        binary = root/'fake_backend.cmd'
+        binary.write_text('\n'.join(header)+'\n'+_FAKE_BACKEND_BODY)
     binary.chmod(0o755)
+    return binary
+
+
+def fake_install(root, backend):
+    root=Path(root);root.mkdir(parents=True)
+    binary=fake_binary(root)
     vocab=root/'vocabulary';vocab.write_text(LABEL)
     manifest=dict(purpose=LABEL,backend=backend,binary=str(binary),binary_sha256=file_hash(binary),
                   vocabulary=str(vocab),vocabulary_sha256=file_hash(vocab),commit=PINS[backend])

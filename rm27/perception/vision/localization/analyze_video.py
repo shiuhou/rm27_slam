@@ -329,6 +329,10 @@ def main(argv=None):
     (out / "provenance.json").write_text(json.dumps(provenance, indent=2, allow_nan=False) + "\n")
     write_simple_yaml(out / "provenance.yaml", provenance)
     try:
+        import matplotlib
+        # These diagnostics are only ever written as files, never shown; select a
+        # non-interactive backend so a headless host needs no display or Tk install.
+        matplotlib.use("Agg", force=True)
         import matplotlib.pyplot as plt
         if quality_rows:
             t = [r["pts_time_s"] for r in quality_rows]
