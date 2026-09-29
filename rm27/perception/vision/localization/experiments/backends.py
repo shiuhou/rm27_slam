@@ -1,6 +1,7 @@
 """Pinned upstream CLI adapters. They launch only through the offline runner."""
 import os
 from pathlib import Path
+import sys
 
 from .common import checked_file, read_json, require, fixture_mode, write_json, number
 
@@ -88,7 +89,14 @@ class BackendAdapter:
         lines = ['# RM27 offline monocular input\n', '# original source timestamps in seconds\n', '# timestamp image\n']
         for i,(frame,image) in enumerate(zip(frames,images)):
             link = image_dir/f'{i:08d}{image.suffix}'
-            link.symlink_to(image.resolve())
+            # Windows often blocks symlink creation unless Developer Mode or
+            # SeCreateSymbolicLinkPrivilege is enabled. Copies preserve the
+            # exact bytes and keep the offline experiment portable.
+            try:
+                link.symlink_to(image.resolve())
+            except (OSError, NotImplementedError):
+                import shutil
+                shutil.copyfile(image, link)
             lines.append(f'{frame.encoded_pts} rgb/{link.name}\n')
         (sequence/'rgb.txt').write_text(''.join(lines))
         if self.backend == 'stella_vslam':
@@ -107,6 +115,11 @@ class BackendAdapter:
                        '--viewer', 'none', '--eval-log-dir', str(raw)]
         else:
             command = [install['binary'], install['vocabulary'], str(config), str(sequence)]
+        # Test-only Python launchers are executable directly on POSIX, but
+        # Windows needs its interpreter explicitly. Native backend binaries
+        # retain their original command unchanged.
+        if os.name == 'nt' and Path(install['binary']).suffix.lower() == '.py':
+            command.insert(0, sys.executable)
         return command, raw
 
     def collect_outputs(self, raw):

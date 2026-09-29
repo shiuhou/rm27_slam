@@ -53,7 +53,7 @@ def make_dataset(root, count=18, step=1):
 
 def fake_install(root, backend):
     root=Path(root);root.mkdir(parents=True)
-    binary=root/'fake_backend'
+    binary=root/'fake_backend.py'
     binary.write_text('#!'+sys.executable+'\n'+'''# TEST_FIXTURE_ONLY: emits predetermined poses, not SLAM.
 import sys
 from pathlib import Path

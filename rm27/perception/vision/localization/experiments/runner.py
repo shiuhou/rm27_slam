@@ -50,6 +50,10 @@ def run(config, *, _fixture_token=None):
         write_json(root/'run.json',result)
         adapter=BackendAdapter(config['backend'],config.get('installation'))
         install=adapter.describe_version(_fixture_token=_fixture_token)
+        # Check this before image preparation so the reported refusal reflects
+        # the unsupported backend feature rather than a later filesystem error.
+        require(config.get('native_mask') is None, 'BACKEND_MASK_UNSUPPORTED',
+                'the pinned TUM CLI paths do not expose native feature masks')
         if config.get('online',False):
             require(install.get('online_observation',{}).get('format') == 'rm27_online_csv_v1',
                     'ONLINE_OBSERVATION_UNAVAILABLE', 'requires an explicitly instrumented installation')

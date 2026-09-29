@@ -56,7 +56,9 @@ def test_mock_process_end_to_end(tmp_path,backend):
         assert len(result['command'])==4
         assert result['evaluation']['processed_frame_count'] is None
         assert result['evaluation']['trajectory_scope']=='keyframes_only'
-    assert all(p.is_symlink() for p in (out/'inputs').iterdir())
+    # POSIX uses symlinks; Windows may use byte-identical copies when symlink
+    # creation is unavailable to the current user.
+    assert all(p.is_symlink() or p.is_file() for p in (out/'inputs').iterdir())
 
 
 def test_runner_refuses_calibration_before_binary(tmp_path):
