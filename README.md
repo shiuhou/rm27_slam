@@ -27,6 +27,12 @@ The calibration and dataset procedures are in
 camera/board geometry and timing must be recorded and validated before a
 trajectory is treated as metric or sent to a controller.
 
+The current physical calibration target is `RM27-DOT-7X7-30MM-01`: a
+symmetric 7 × 7 circular grid with nominal 30 mm center spacing. Its target
+definition is in `rm27/perception/vision/localization/target_definition.template.json`.
+Measure the printed center spacing and record the result in the capture session;
+the nominal spacing is not a substitute for measurement.
+
 Current status: public-dataset backend qualification is partial; RM27 camera
 calibration capture and real VSL-3 evaluation have not passed. See
 `rm27/perception/vision/docs/VSL-2_GATE_STATUS.json` and

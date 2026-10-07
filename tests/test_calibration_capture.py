@@ -94,6 +94,20 @@ def test_chessboard_actual_detection_and_generator():
     assert 'width="300.0mm"' in svg and svg.count('fill="black"') == 35
 
 
+def test_symmetric_circles_grid_validation_and_detection():
+    data = dict(type='circles_grid', pattern_cols=7, pattern_rows=7,
+                center_distance_m=.03, physical_target_id='DOT-BOARD-01')
+    validate_target(data)
+    board = np.full((500, 500), 255, np.uint8)
+    for y in range(7):
+        for x in range(7):
+            cv2.circle(board, (80 + x * 55, 80 + y * 55), 14, 0, -1)
+    points, ids = detect(board, data, make_detector(data))
+    assert points is not None and len(points) == 49
+    assert ids.tolist() == list(range(49))
+    observation_geometry(points, ids, data, 500, 500)
+
+
 def test_charuco_detected_ids_and_invalid_marker():
     data = dict(type='charuco', squares_x=7, squares_y=5, square_length_m=.03,
                 marker_length_m=.022, dictionary='DICT_5X5_100', physical_target_id='SYNTHETIC')
