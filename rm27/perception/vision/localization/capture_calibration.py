@@ -28,6 +28,8 @@ def validate_target(target):
     kind = target.get("type")
     if kind == "chessboard":
         counts, lengths = ("corners_x", "corners_y"), ("square_size_m",)
+    elif kind == "circles_grid":
+        counts, lengths = ("pattern_cols", "pattern_rows"), ("center_distance_m",)
     elif kind == "charuco":
         counts, lengths = ("squares_x", "squares_y"), ("square_length_m", "marker_length_m")
         if not hasattr(cv2, "aruco") or not hasattr(cv2.aruco, "CharucoDetector"):
@@ -51,7 +53,7 @@ def validate_target(target):
 
 
 def make_detector(target):
-    if target["type"] == "chessboard":
+    if target["type"] in ("chessboard", "circles_grid"):
         return None
     dictionary = cv2.aruco.getPredefinedDictionary(getattr(cv2.aruco, target["dictionary"]))
     board = cv2.aruco.CharucoBoard((target["squares_x"], target["squares_y"]),
@@ -64,6 +66,10 @@ def detect(gray, target, charuco):
         found, corners = cv2.findChessboardCornersSB(
             gray, (target["corners_x"], target["corners_y"]), flags=cv2.CALIB_CB_EXHAUSTIVE)
         return (corners, np.arange(len(corners))) if found else (None, None)
+    if target["type"] == "circles_grid":
+        pattern = (target["pattern_cols"], target["pattern_rows"])
+        found, centers = cv2.findCirclesGrid(gray, pattern, flags=cv2.CALIB_CB_SYMMETRIC_GRID)
+        return (centers, np.arange(len(centers))) if found else (None, None)
     corners, ids, _, _ = charuco[1].detectBoard(gray)
     return corners, ids
 
@@ -74,8 +80,8 @@ def observation_geometry(corners, ids, target, width, height):
     Homography describes the printed plane only; no camera calibration or metric
     camera pose is estimated. Require >=70% ChArUco corners and board extent.
     """
-    nx = target.get("corners_x", target.get("squares_x", 0) - 1)
-    ny = target.get("corners_y", target.get("squares_y", 0) - 1)
+    nx = target.get("corners_x", target.get("pattern_cols", target.get("squares_x", 0) - 1))
+    ny = target.get("corners_y", target.get("pattern_rows", target.get("squares_y", 0) - 1))
     ids = np.asarray(ids).reshape(-1)
     points = np.asarray(corners, dtype=np.float64).reshape(-1, 2)
     if len(points) < max(6, math.ceil(nx * ny * .7)) or len(set(ids.tolist())) != len(ids):
@@ -194,7 +200,7 @@ def main(argv=None):
     session = json.loads(args.session.read_text())
     validate_session(session)
     measures = session["physical_measurements"]
-    square = target.get("square_size_m", target.get("square_length_m"))
+    square = target.get("square_size_m", target.get("square_length_m", target.get("center_distance_m")))
     for axis in ("horizontal", "vertical"):
         measured_square = measures[f"{axis}_span_m"] / measures[f"{axis}_square_count"]
         if abs(measured_square / square - 1) > .01:

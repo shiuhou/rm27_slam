@@ -6,6 +6,13 @@ capture or calibration fitting was performed. VSL-2 remains
 
 ## Target and physical measurements
 
+For the photographed symmetric circular grid with 7 columns, 7 rows and
+30 mm center spacing, use target type `circles_grid`, `pattern_cols: 7`,
+`pattern_rows: 7`, and `center_distance_m: 0.03`. The capture tool uses
+OpenCV's symmetric circles-grid detector and assigns row-major point IDs.
+Measure the spacing on the physical print; a nominal value alone is not a
+measurement. Its target JSON also requires a unique `physical_target_id`.
+
 Use the generated **chessboard: 9 × 6 inner corners (10 × 7 squares)** for the
 first session. The generator produces a 300 × 225 mm SVG including a white
 margin, with nominal 25 mm squares. Print on A3 at **100% / actual size**, no

@@ -15,6 +15,9 @@ from .transforms import prepare_images
 
 
 def run(config, *, _fixture_token=None):
+    if config.get('backend') == 'OpenVINS':
+        from .openvins_runtime import run as run_vio
+        return run_vio(config)
     require(type(config.get('schema_version')) is int and config['schema_version']==1,'RUN_SCHEMA_UNSUPPORTED','version 1')
     require(set(config)<= {'schema_version','purpose','run_id','backend','dataset','installation','output','subset',
                           'input_hz','transforms','timeout_s','native_mask','online'},'RUN_CONFIG_UNSUPPORTED','unknown keys')

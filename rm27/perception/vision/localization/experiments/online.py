@@ -17,6 +17,9 @@ from .common import canonical, require, number
 from .trajectory import canonical_pose
 
 STATE_MAP = {
+    # /poseimu alone does not report tracking/reset state. Never infer TRACKING
+    # from publication or successful initialization of the upstream estimator.
+    'OpenVINS': {},
     'stella_vslam': {'Initializing':'INITIALIZING', 'Tracking':'TRACKING', 'Lost':'LOST'},
     'ORB-SLAM3': {'-1':'UNINITIALIZED', '0':'UNINITIALIZED', '1':'INITIALIZING',
                   '2':'TRACKING', '3':'LOST', '4':'LOST'},
