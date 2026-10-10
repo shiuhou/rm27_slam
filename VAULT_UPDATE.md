@@ -1,5 +1,13 @@
 # Vault update proposal — not ingested
 
+## SSH workspace inventory supplement — 2026-10-11
+
+`rm27/perception/vision/docs/WORKSPACE_LOCATIONS.md` consolidates saved Linux
+research/worktree/evidence locations, M3C deployments and Windows editing mirrors.
+It distinguishes historical path evidence from UNKNOWN current remote state and
+GitHub's curated publication from full disk backup or deployment. No SSH, hardware
+or Vault access in this documentation supplement; no credentials are published.
+
 ## Publication proposal — 2026-10-11 (not ingested)
 
 The current portable summary is `rm27/perception/vision/docs/PX4_M3C_CONNECTION.md`

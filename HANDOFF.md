@@ -1,5 +1,44 @@
 # Engineering Handoff
 
+## CURRENT — SSH workspace location supplement, 2026-10-11
+
+### Repository state / objective
+
+Windows main at `4dba7fd79cb2ecad739c1abf22c8a0fc577dc07c` before this supplement;
+remote main matched. Unrelated untracked `tests/camera_capture.py` / `tmp/` preserved.
+User explicitly requested publishing the SSH-host/M3C/local location inventory.
+
+### Actual changes and verified facts
+
+- Added `rm27/perception/vision/docs/WORKSPACE_LOCATIONS.md` and linked it from the
+  resume guide. Source locations were checked against saved handoffs, validation
+  reports and experiment scripts, not by new SSH/device access.
+- Linux research worktree: `/home/shiuhou/Projects/rm27_slam_vio_openvins/` on the
+  historically recorded `shiuhou@10.4.135.84`; separate evidence/build/data root
+  `/home/shiuhou/Projects/rm27-vio-20261007/`.
+- M3C: historical `root@10.18.198.1`, deployments
+  `/root/rm27-mavlink-test-20261010/` and `/root/slam-bench-20261007/`.
+- Local Windows `.maixpy` holds editing mirrors and later offline IMU/reassembly
+  work. Selected publication is not a complete backup or automatic SSH deployment.
+
+### Verification / decisions / risks
+
+Documentation-only: reviewed changed diff; `git diff --cached --check` exited 0,
+and the local-link check verified 16 versioned targets with exit 0. Normal push
+is verified against remote main after completion, not pre-claimed. No software/hardware tests
+rerun and no new runtime PASS claimed. Preserve both historical and current notes.
+No failed experiment in this supplement; remote current state remains UNKNOWN.
+Addresses/paths can change, old Linux worktree may still be dirty, and deployed
+board decoder can predate current local analysis. No credentials included.
+
+### Next actions / rollback
+
+Other Codex instances start with CODEX_RESUME and WORKSPACE_LOCATIONS; inspect
+remote identity and dirty Git state before integrating, never blindly overwrite.
+VIO software next task and Stage C boundaries below are unchanged. No Vault access.
+Rollback only this documentation supplement relative to `4dba7fd`; do not reset
+the repository, remote worktree, saved experiments or device deployments.
+
 ## CURRENT — portable PX4 / M3C handoff publication, 2026-10-11
 
 This section supersedes older CURRENT/next-action paragraphs below. User explicitly
