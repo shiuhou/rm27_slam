@@ -1,5 +1,29 @@
 # Engineering Handoff
 
+## CURRENT — SLAM → VINS/VIO roadmap index, 2026-10-11
+
+- Baseline: Windows main `fba7457bf3656e4c4a5833611190579821f45fb0`, matching
+  remote main before this change; untracked `tests/camera_capture.py` / `tmp/` preserved.
+- User objective: make the original SLAM plan and later VINS/VIO plan accessible
+  to other Codex instances alongside the handoff, then publish to GitHub.
+- Verified source state: original 2026-09-20 VSL-0–8 roadmap already tracked since
+  `bd25acf`; the 2026-10-07 v1.0 VIO `new_plan.md` was published in `4dba7fd`.
+  Neither full original is replaced or duplicated by this documentation task.
+- Actual changes: `rm27/perception/vision/docs/PLAN_HISTORY.md`, README and resume
+  links; proposal note in VAULT_UPDATE. Explicit historical→current relationship,
+  candidate roles, and planned-gate vs measured-result distinctions.
+- Decision/risks: reuse existing plans/evidence and unchanged acceptance criteria.
+  VINS-Fusion/sqrtVINS remain candidates, not implied completed implementations;
+  Stage A/B transport PASS does not imply G4 fusion or real Stage C qualification.
+  Some older plan assumptions and next actions are superseded by current reports.
+- Verification: 27 published local plan/entry links checked, both full source plans
+  confirmed unchanged, and `git diff --cached --check` exited 0. Normal push is
+  checked against remote main after completion; no runtime/physical tests or new PASS.
+  No failed experiment, remote device access, deployment or Vault write in this task.
+- Next: follow CODEX_RESUME's current software task and safety boundary, not every
+  old future-stage operation. Rollback only this doc supplement relative to fba7457;
+  do not erase source plans, raw evidence, or unrelated work.
+
 ## CURRENT — SSH workspace location supplement, 2026-10-11
 
 ### Repository state / objective

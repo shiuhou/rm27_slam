@@ -9,6 +9,8 @@
    同时读 [SSH 主机、板端部署与本地资料位置](WORKSPACE_LOCATIONS.md)，不要混淆
    Linux 工作树、外部实验目录、M3C 部署与 GitHub 发布子集。
 2. 根 [new_plan.md](../../../../new_plan.md)：原 VIO 目标和验收门槛不放宽。
+   [计划历史索引](PLAN_HISTORY.md) 同时链接早期 SLAM 原文，并说明 VINS-Fusion /
+   OpenVINS / sqrtVINS 的计划角色，不表示这些候选全已验证。
 3. [Stage A/B](../../../../.maixpy/mavlink2-20261010/VALIDATION.md) 和
    [IMU 50/100 Hz 测量](../../../../.maixpy/imu-transport-20261010/VALIDATION.md)。
 4. [最新单 UART 设计](../../../../.maixpy/imu-design-20261010/LATEST.md) →

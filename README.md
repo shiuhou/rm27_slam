@@ -14,6 +14,11 @@ artifacts.
 
 ## Continue RM27 VIO / PX4–M3C work
 
+The complete [original SLAM / monocular roadmap](rm27/perception/vision/M3C_OS04A10_SLAM_实验起步包_v1/M3C_SLAM_experiment_plan_v1/M3C_OS04A10_单目定位实验路线_v1.md)
+and later [lightweight VINS/VIO plan](new_plan.md) are both preserved.
+Read [plan history and current-gate guidance](rm27/perception/vision/docs/PLAN_HISTORY.md)
+for how the research direction changed; planned targets are not completed results.
+
 Read [HANDOFF.md](HANDOFF.md), then
 [PX4–M3C wiring and verified link state](rm27/perception/vision/docs/PX4_M3C_CONNECTION.md)
 and [Codex resume guide](rm27/perception/vision/docs/CODEX_RESUME.md).

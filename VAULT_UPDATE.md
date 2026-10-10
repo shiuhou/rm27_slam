@@ -1,5 +1,12 @@
 # Vault update proposal — not ingested
 
+## Roadmap continuity proposal — 2026-10-11
+
+`rm27/perception/vision/docs/PLAN_HISTORY.md` links the preserved 2026-09-20 SLAM
+roadmap and 2026-10-07 VINS/VIO plan, explains candidate roles and planned vs
+observed gates. Original plans/criteria unchanged; no new validation/deployment.
+This repository note is not Vault ingestion.
+
 ## SSH workspace inventory supplement — 2026-10-11
 
 `rm27/perception/vision/docs/WORKSPACE_LOCATIONS.md` consolidates saved Linux
