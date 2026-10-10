@@ -1,46 +1,242 @@
 # Engineering Handoff
 
-## CURRENT — portable PX4 / M3C handoff publication, 2026-10-11
+## CURRENT — entirely offline VIO continuation, 2026-10-09
 
-This section supersedes older CURRENT/next-action paragraphs below. User explicitly
-requested commit/push and connection documentation for other Codex instances.
-No hardware or Vault access is part of this publication task.
+### Repository state
 
-- Start: `rm27/perception/vision/docs/CODEX_RESUME.md`, then
-  `PX4_M3C_CONNECTION.md`, root `new_plan.md` and `.maixpy/README.md`.
-- Git baseline: local main b8e7299 fast-forwarded without conflict to existing
-  remote main 7a91a02e575794ba6756012d31eeb66d73182f35 (merged OpenVINS checkpoint).
-  Windows history preserved in `.maixpy/HANDOFF_WINDOWS_20261011.md`; remote
-  history below retained. No reset, force push, or replacement of upstream work.
-- Actual changes: portable wiring/port/source/clock/status summary, curated existing
-  research scripts/tests/reports at their original paths, publication index and
-  additive README/plan/Vault-proposal pointers. Large raw evidence remains local.
-  `.gitignore` keeps generated `.maixpy` content excluded; only selected files
-  are explicitly versioned. Unrelated `tests/camera_capture.py` / `tmp` remain out.
-- Physical link: M3C UART2 `/dev/ttyS2` ↔ FC UART3/PX4 `/dev/ttyS2`, crossed TX/RX,
-  common ground, tested 115200/8N1/no flow. COM19 is independent USB inspection.
-  Current audited PX4 v1.17.0 hash d6f12ad1c4f70ad3230afd7d86e971421e02fef4.
-- VERIFIED historical Stage A/B: MAVLink2 HEARTBEAT and synthetic ODOMETRY→uORB,
-  stop/restart attribution. Preserve, don't rerun. EKF2_EV_CTRL=0 / Disarmed are
-  last observed states, not fresh observations from this task.
-- PARTIAL VIO-S0: HIGHRES 50Hz transport measured; requested100 capped62.112Hz.
-  Integrated measurement semantics, selected BMI088 source completeness, timing
-  and camera clock mapping remain unqualified. VIO-P finite reliable-input cohort
-  is promising, overall PARTIAL. Stage C remains NOT_STARTED.
-- Superseding constraint: user reports no spare UART; no more spare-pad requests.
-  USB-host fallback is driver/role/management blocked. Single-UART stock MAVLink
-  ULog is a candidate, not a hardware transport or OpenVINS PASS. 921600 is planned,
-  NOT applied/approved by this publication.
-- Next software work: single-owner live start/ACK/stop/timeout/tail/restore controller
-  with offline tests, reusing the finite reassembler and existing decoder. No live
-  controller deployment, fusion, calibration, flight or new capture in this task.
-- Evidence availability: versioned reports summarize earlier results; original raw
-  byte/log/trajectory artifacts and full vendor source builds are not shipped.
-  See `.maixpy/README.md` for reproducible fixture commands and local-only limits.
+Research repo `/home/shiuhou/Projects/rm27_slam_vio_openvins`, branch
+research/vio-openvins-baseline, HEAD4637a5f589801f54ecab146a389db0c81ca1d13f plus
+scoped uncommitted additions. Prior dirty HANDOFF/VAULT_UPDATE/IMU diagnostic docs
+preserved in offline-20261009/repo-before. Windows main @b8e7299 remains the camera
+workspace; `.maixpy/offline-vio-20261009` is a local editing/evidence mirror, not a
+new estimator framework. No commit/push, dependencies, Vault or physical access.
 
-Publication validation is recorded in
-`rm27/perception/vision/docs/PUBLICATION_VALIDATION.md`; the resulting commit and
-push are identified by Git history/remote state, not a pre-recorded success claim.
+### Task objective
+
+Exhaust useful saved-data/software work across S0 logging, native reproducibility
+and real-pipeline preparation while M3C and PX4 are disconnected. Preserve original
+criteria and failure evidence; no fabricated synchronized inputs or simulator PASS.
+
+### Actual changes
+
+- Added/tested experiments.px4_ulog for identity-bound separate FIFO expansion,
+  exact association diagnostics, transport budget and no-overwrite raw ULog export.
+  Original12648/11933 samples,391 dropouts and11930 matched timestamps reproduced;
+  source hash unchanged. This is not a loss-free or synchronized dataset.
+- Added/tested experiments.vio_dataset for explicit affine clock maps/epochs,
+  bounded validity/uncertainty, separate bracketing, calibration/noise/model checks.
+  Existing admission/schema/adapter/evaluator and acceptance thresholds unchanged.
+- Camera model diagnostic uses fixed27-fit/7-validation records; explicit4-model
+  refit RMS0.171/0.202px passes original geometric gates. Candidate only: lens/mode
+  provenance, timing/extrinsics/noise are still unqualified. Original5-model retained.
+- Isolated ASan replay dynamically proves OpenVINS callback stack-use-after-return.
+  Minimal timestamp-value-capture patch and separate ASan/Release builds retained.
+  Fixed ASan full replay:2800 poses/all3 exits0/no finding in instrumented TU.
+  Three Release controls and existing-adapter saved-output parity completed;
+  VIO-P still fails unchanged historical1cm criterion in one new run.
+- Native trace2 proves differing IMU feed omissions137/133; joined-worker controls
+  worsen coverage and are rejected. Reliable-input trace2 receives all29120/2912
+  source timestamps. Uninstrumented2 and full existing-adapter1 also complete;
+  all FIVE candidate state text hashes identical, ATE0.07011501076521641m.
+  Full adapter reports ADAPTER_RUNTIME_AND_METRIC_PASS against ORIGINAL native02,
+  ATEdelta0.0000010195686508396307m. No reference/threshold/math/adapter changes.
+  Candidate patches and launcher/QoS recipe retained separately, not default/live
+  promotion. Failed original/lifetime-only/serial cohorts are not reclassified.
+- Prepared PX4_NEXT_CAPTURE_PLAN.md and RM27_VIO_CAPTURE_PROCEDURE.md, including
+  actual-buffer64/128/64KiB matrix, independent loss boundaries, transport budgets,
+  strict clock/frame semantics and staged calibration procedure. Not executed.
+
+### Verification commands and observed results
+
+`py -3 -m pytest -q --junitxml=validation/windows-final-v3-tests.xml` in local mirror:
+282passed/1skipped. Linux `PYTEST_DISABLE_PLUGIN_AUTOLOAD=1
+/home/shiuhou/venvs/mujoco/bin/python -m pytest tests -q` likewise282passed/1skip.
+ROS2-sourced test_asl_transport.py:7passed. Linux system full:281passed/1skip/1fail;
+failure is the pre-existing missing ChArUcoDetector API, not hidden or waived.
+External/local OFFLINE_VALIDATION.md records commands/versions/inputs/results.
+verify_saved_ulog.py, camera_model_audit.py, run_fixed_cohort.py --count3,
+analyze_cohort.py fixed and verify_saved_adapter.py all exit0 for their scoped
+checks. Lifetime-only run03 historical gate remains FAIL. Later reliable candidate
+saved parity and full runtime pass the same original gate. final_offline_audit.py
+exit0 verifies original and candidate frozen manifests, five identical state files,
+all16 candidate process exits0 and all six diagnostic trace re-parses.
+
+### Failed attempts
+
+Initial partial-ASan Eigen allocator mismatch preserved, diagnostic macro corrected;
+subsequent ASan reproduced the independent stack lifetime fault. Linux system
+ChArUco API failure persists as baseline environment evidence. Expected TDD red
+tests retained in execution record. Remote shell quoting failure was bounded and
+retried safely; no data/hardware state inferred from failed command output.
+OpenCV5 synthetic repeat found ~1.37e-10 K differences even with identical solver
+inputs. A cross-call bitwise equality test was invalid for holdout isolation.
+Replaced that assertion with exact captured solver-input equality and exact
+same-call output retention; kept geometric limits/fit data/code unchanged.
+cv5-refit-diagnostic.json and failed/passing test XML retained. This is no claim
+of fixing OpenCV numerical repeatability. Patch check without context initially
+failed; corrected context before application, original launcher not modified.
+
+### Decisions and rationale
+
+Reuse existing framework, immutable data, source and evaluator. Fix only the
+dynamically evidenced lifetime defect; keep callback/QoS controls separate from
+estimator math and frozen acceptance. Independent sensor streams and explicit
+maps beat inventing correspondence, offsets or calibration metadata. Original
+criteria remain in force even if a new run is numerically more accurate.
+See `.codex/tasks/2026-10-09-vio-offline/decision-record.md`.
+
+### Verified facts
+
+Saved ULog recording loss is real; card-only cause is not isolated. Lifetime fix
+is exercised on saved real input. Reliable-input public replay candidate is
+VERIFIED for this finite cohort, including unchanged historical metric gate and
+full adapter runtime. VIO-P rollup stays PARTIAL: failed old/default paths and
+isolated/not-promoted candidate must remain distinct. Input-delivery controls
+combine reliability/depth/discovery; individual effects and every historical
+failure are not uniquely decomposed. No universal determinism/performance claim.
+No real synchronized RM27 camera/IMU record or qualified transform/clock map exists.
+
+### Assumptions and open questions
+
+Firmware source hashes are prior readbacks, not current disconnected-device state
+or reproduced binaries. Timestamp helpers trust evidence claims structurally;
+existing artifact/identity gates must verify actual evidence. M3C VGTR/FC TX3/RX3
+labels do not qualify electrical/OS port mapping or timing. No deployment choice
+is implied by a diagnostic control or camera-model candidate.
+
+### Risks
+
+Old lossy data can test software but cannot qualify VIO, noise or hardware clocks.
+No-dropout is not enough without subscriber/timestamp/identity checks. Replacing
+the old historical baseline with a more convenient run would invalidate its gate.
+Diagnostic instrumentation affects timing; no M3C performance inference is valid.
+
+### Next actions
+
+Independent useful offline work on available evidence is complete. Remaining
+BOUNDARIES: new-firmware loss-free capture, sensor/clock/exposure evidence,
+rigid extrinsics/noise and real synchronized RM27 data need physical evidence.
+Transport and four-model calibration adoption, plus promoting the isolated
+reliable-only replay profile, are explicit interface/acceptance decisions, not
+automatic defaults. Existing evidence cannot reconstruct omitted physical samples.
+
+Exactly ONE next physical action: connect ONLY PX4 via USB for the prepared
+new-firmware A1/B/A2 actual64/128/64KiB logging experiment (fresh props-off/disarmed,
+identity/config backup and restoration checks). It verifies buffer sensitivity
+of writer dropouts separately from logger subscription gaps. No M3C required.
+Experiment remains NOT EXECUTED; no device reconnection occurred in this task.
+
+### Rollback point
+
+Restore only this task's additive docs from offline-20261009/repo-before if needed;
+new helper/tests/patches are separate scoped additions. Preserve original/failed
+raw data, old13-run cohort, original source/build/config and all new evidence.
+Do not use old FC configuration backups as restore targets for new firmware.
+VAULT_UPDATE is a proposal only; no Vault read/write or ingestion occurred.
+
+## CURRENT — exact-hash VehicleIMU/logger comparison, 2026-10-09
+
+Read-only source task at research HEAD4637a5f with all prior dirty docs retained.
+Compared old4817c061 to newd6f12ad1; added `PX4_V117_SOURCE_AUDIT.md`.
+VehicleIMU gap increments once per successful sensor_accel/gyro read with
+nonconsecutive uORB generation, not per missing raw sample or timestamp gap.
+Both consumed SI queues are8; FIFO queues1/4 belong to different subscribers.
+Startup generation initialization can contribute historical counts. Recent
+idle-logger increments still lack event-correlated scheduling/lifecycle evidence.
+
+Run/UpdateAccel/UpdateGyro/UpdateIntegratorConfiguration functions identical;
+BMI270 driver and four sensor messages byte-identical. Logger adds memory-aware
+buffer capping: -b64 is requested, actual allocation unverified while idle.
+Backend parameter/startup/status/default-topic/watchdog/metadata changes recorded;
+core ring rejection/write/fsync/reclaim and dropout/high-water behavior unchanged.
+Do not infer an upgrade fix, physical sensor loss or exact missing-sample count.
+
+Verification: offline verify_source.py reports23 paired files/13 identical,
+16 source assertions and7 abstract queue cases PASS; not a compiled PX4 test.
+External evidence px4-v117-source-audit-20261009 retains sources/hash URLs/diffs.
+Initial404 paths resolved using upstream tree; no hardware or source changes.
+Audit/contract/baseline notices and this handoff updated, no schema changes.
+Next: read-only current IMU_INTEG_RATE/work-queue/quiet-interval counter check,
+not executed here. No new capture, parameter writes, M3C, Vault, commit or push.
+VIO-P/S0 PARTIAL. Rollback only these dated docs using repo-before; retain evidence.
+
+## CURRENT — v1.17.0 runtime baseline verified, 2026-10-09
+
+User confirmed COM19/QGC availability; existing read-only helpers verified board
+MICOAIR_H743_V2, Release1.17.0, hash d6f12ad1c4f70ad3230afd7d86e971421e02fef4.
+Selected IMU is now BMI088 instance0 (gyro6684690/accel6946834), not BMI270;
+BMI270 remains instance1/device3604506. Logger idle before/after, process
+`logger start -b 64 -t -m all`,183 subscriptions, SDLOG_BACKEND3/profile1/mode0.
+Commander Disarmed. No logger start/stop, parameter writes, reboot or new capture.
+
+Evidence/commands/limits: `rm27/perception/vision/docs/PX4_V117_BASELINE.md`;
+external Windows/host `px4-v117-baseline-20261009` contains four readback logs.
+All helper sessions exit0, absent-custom-path command failures retained. One-second
+uORB rates are publications only: BMI088 gyro666Hz/accel802Hz; BMI2701580Hz each.
+Drivers had nonzero historical counts unchanged on recheck; VehicleIMU1 gap
+counts increased accel7->8/gyro4->5 despite idle logger. Cause not yet isolated;
+do not attribute this to old SD loss or claim firmware upgrade solved it.
+
+Updated IMU audit/contract runtime notices, added baseline report, preserved all
+previous dated work at research HEAD4637a5f plus prior dirty docs. No production
+code/schema/tests changed; verification is live readback, not synthetic tests.
+Next: read-only exact-new-hash VehicleIMU/BMI270/logger comparison before any
+controlled capture. SD root param_import_fail.txt exists but content/cause/date
+uninspected. No parameter repair, IMU switch, M3C or UART qualification implied.
+VIO-P/S0 PARTIAL unchanged. Rollback: this pass changed documentation only,
+repo-before snapshots retained; no device restoration needed. No commit/push
+or Vault action. Earlier USER-REPORTED-only version notice is superseded here.
+
+## CURRENT — historical logger loss diagnosis / firmware boundary, 2026-10-09
+
+### Repository state and task objective
+Research branch `research/vio-openvins-baseline`, baseline HEAD
+`4637a5f589801f54ecab146a389db0c81ca1d13f`, clean before this documentation
+update. Objective: read-only investigation of existing failed BMI270 ULog.
+Windows baseline `b8e7299` with prior dirty files preserved. No Vault access.
+
+### Actual changes and verified facts
+Added `rm27/perception/vision/docs/PX4_LOGGER_LOSS_DIAGNOSIS.md` and an additive
+notice in the historical capture report. Host-only frame/load/gap analysis and
+embedded perf extraction saved externally under `imu-logger-diagnosis-20261009`.
+Old ULog raw SHA256 unchanged. Embedded postflight `logger_sd_write`: 248 calls,
+71.36544 ms mean, 132.993 ms max; fsync 30 calls, 12.076 ms max. Old pinned
+source confirms write/fsync-before-buffer-reclaim and overflow returns. Full-rate
+four-topic model is 868,870 B/s; 64 KiB holds only 75.43 ms with zero drain.
+The misleading high_water=0 is reset on new dropout, not absence of overflow.
+All 164 gyro FIFO gaps >10 ms overlap gaps in the other three topics. This
+localizes a recording/storage-path bottleneck, not proven card-only failure.
+
+### Verification commands and observed results
+Windows `.maixpy/imu-offline-20261008/venv/Scripts/python.exe -m unittest discover
+-s .maixpy/imu-logger-diagnosis-20261009 -p test_loss.py -v`: 3 passed.
+`analyze_loss.py .maixpy/imu-offline-20261008/bmi270-disarmed-01.ulg`: independent
+ULog frame counts agree with pyulog; final output `loss-analysis-v2.json` retained.
+Source/hash references, exact commands and limits are in the diagnosis report.
+No new device capture or production regression result is claimed.
+
+### Failed attempts / assumptions and open questions
+Existing PX4 reference checkout dd0ad74 does not contain the reported old
+4817c061 object; read exact-hash upstream sources instead. GitNexus unavailable,
+direct source inspection used. Old log has no logger_status topic and no exact
+per-call write/queue timeline. Media vs driver/filesystem vs scheduling and
+additional accel FIFO losses remain unisolated.
+
+### Decisions, risks and next actions
+User reports flashing PX4 v1.17.0 during this pass. Treat as USER-REPORTED, not
+read-back verified. Old diagnosis remains historical v1.15.2 evidence. Before
+any experiment read back new full hash/board, selected device IDs/instances,
+logger process, SDLOG parameters and custom topic file. Do not assume instance1
+or restore old backups to new firmware. A buffer-only contrast across firmware
+versions is not a controlled comparison. New capture needs new-baseline backup,
+disarmed/props-off verification and bounded logging-only approval. No hardware
+assembly, camera calibration, M3C integration or live stream is authorized here.
+VIO-P and VIO-S0 remain PARTIAL; no threshold change or automatic PASS.
+
+### Rollback point
+Only additive research documentation changes; pre-edit files preserved in
+external `imu-logger-diagnosis-20261009/repo-before`. Preserve all raw evidence.
+No FC/M3C connection or settings change to restore this pass; no commit/push.
 
 ## CURRENT — authorized offline BMI270 capture, 2026-10-08
 

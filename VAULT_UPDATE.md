@@ -1,5 +1,16 @@
 # Vault update proposal — not ingested
 
+## Publication proposal — 2026-10-11 (not ingested)
+
+The current portable summary is `rm27/perception/vision/docs/PX4_M3C_CONNECTION.md`
+and `CODEX_RESUME.md`. Preserve UART2↔UART3 crossed wiring, verified115200/MAVLink2,
+exact d6f12ad1 firmware, separate USB management, Stage A/B scope and later VIO gates.
+User reports no spare UART; prior spare-pad next actions are superseded. Stock
+single-UART MAVLink ULog remains a candidate with an offline reassembler only.
+No new hardware observation or Vault access. Root handoff and selected research
+are being published at the user's explicit request. Windows proposal history is
+`.maixpy/VAULT_UPDATE_WINDOWS_20261011.md`; older Linux proposal below is retained.
+
 ## Latest authorized offline experiment, 2026-10-08
 
 One props-off/user-confirmed, disarmed PX4 BMI270 FIFO ULog capture completed;

@@ -1,0 +1,8 @@
+# Historical research evidence is byte-preserved, including its recorded hashes.
+# Do not normalize newlines when publishing/checking out the curated subset.
+.maixpy/** -text
+# CRLF schema snapshots and nested diff context must remain byte-identical.
+.maixpy/**/*.msg whitespace=cr-at-eol
+.maixpy/**/*.patch -whitespace
+# The original Markdown plan uses intentional two-space hard line breaks.
+new_plan.md whitespace=-blank-at-eol

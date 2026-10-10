@@ -12,6 +12,16 @@ It does not contain the flight stack, device-side target-recognition submodule,
 raw camera recordings, public datasets, third-party SLAM binaries or generated
 artifacts.
 
+## Continue RM27 VIO / PX4–M3C work
+
+Read [HANDOFF.md](HANDOFF.md), then
+[PX4–M3C wiring and verified link state](rm27/perception/vision/docs/PX4_M3C_CONNECTION.md)
+and [Codex resume guide](rm27/perception/vision/docs/CODEX_RESUME.md).
+The plan is [new_plan.md](new_plan.md); selected bench/offline code and reports
+are indexed in [.maixpy/README.md](.maixpy/README.md).
+Stage A/B is preserved PASS; real high-rate IMU input remains PARTIAL and full
+Stage C has not started. Raw captures/datasets and credentials are not published.
+
 ## Start on the camera computer
 
 Use Python 3 with NumPy, OpenCV and pytest. From the repository root:
