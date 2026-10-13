@@ -1,0 +1,2 @@
+# Historical byte hashes must survive a Windows or Linux clone unchanged.
+* -text whitespace=cr-at-eol

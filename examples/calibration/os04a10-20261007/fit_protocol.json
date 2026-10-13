@@ -1,0 +1,18 @@
+{
+  "model": "opencv_pinhole_brown_conrady_5",
+  "rationale": "Perspective images with no demonstrated extreme fisheye projection; use standard radial k1,k2,k3 and tangential p1,p2 model without extra rational parameters.",
+  "fit_split": "27 fit observations only; validation split frozen before fitting",
+  "validation": "Estimate independent board pose with fixed fitted K and distortion; never refit K/distortion on validation.",
+  "gates": {
+    "fit_rms_px_max": 0.5,
+    "validation_rms_px_max": 0.7,
+    "validation_point_p95_px_max": 1.0,
+    "validation_view_rms_px_max": 1.0,
+    "point_error_max_px": 2.0,
+    "relative_focal_std_max": 0.05,
+    "principal_point_std_px_max": 20.0,
+    "positive_distortion_jacobian_required": true
+  },
+  "no_posthoc_outlier_removal": true,
+  "limitations": "Same-session validation and operator-reported measurements; no independent-session verification or sensor timing certification. Residual gates are this experiment's predeclared geometric checks, not system/controller acceptance."
+}

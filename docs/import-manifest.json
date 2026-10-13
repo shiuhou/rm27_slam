@@ -1,0 +1,470 @@
+﻿{
+    "schema_version":  1,
+    "source_commit":  "74d44b09c65e2a839b74d834756f0d178207d679",
+    "source_repository":  "https://github.com/shiuhou/rm27_slam-vio",
+    "scope":  "Selected tracked source plus explicitly identified local historical artifacts; raw recordings excluded",
+    "files":  [
+                  {
+                      "destination":  "requirements.txt",
+                      "sha256":  "6f90c6fe85715f9f6125997292fd5ea176e458648b16e7721f105297d6171bc8",
+                      "source":  "requirements.txt",
+                      "bytes":  30
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/__init__.py",
+                      "sha256":  "5923d62ce6617cae0ccd1b27f14e2f56f542c80b48f6802d0aabdc1da17809ca",
+                      "source":  "rm27/perception/vision/localization/__init__.py",
+                      "bytes":  676
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/analyze_video.py",
+                      "sha256":  "6163498348daefdcc66beee1e7f62bd5f0e0326606ba00760cc06bb9c5b356c8",
+                      "source":  "rm27/perception/vision/localization/analyze_video.py",
+                      "bytes":  19426
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/calibration_session.template.json",
+                      "sha256":  "ed9eb57c63fc409ba41e72267f656ee169eb87bbac8c494477686935f32bff12",
+                      "source":  "rm27/perception/vision/localization/calibration_session.template.json",
+                      "bytes":  915
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/capture_calibration.py",
+                      "sha256":  "e7303643d79ad37d9b5800bedc1f841abd90888bb3c43c3451ab5a5dfa75909e",
+                      "source":  "rm27/perception/vision/localization/capture_calibration.py",
+                      "bytes":  17926
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/experiments/__init__.py",
+                      "sha256":  "71ece7ad9b19ad79814221831cc1ec3646f6c9e2a7f9bab21f71ed306631a73b",
+                      "source":  "rm27/perception/vision/localization/experiments/__init__.py",
+                      "bytes":  86
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/experiments/backends.py",
+                      "sha256":  "bd8e369d6c78ca18339087432c5de9ed5773d70d872a678390d706410ff2703f",
+                      "source":  "rm27/perception/vision/localization/experiments/backends.py",
+                      "bytes":  8918
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/experiments/benchmark.py",
+                      "sha256":  "f81a48882ff532e63866976cb649316dddfa3a7c3f85b0ebccb69605a2b04302",
+                      "source":  "rm27/perception/vision/localization/experiments/benchmark.py",
+                      "bytes":  6729
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/experiments/calibration.py",
+                      "sha256":  "88c04d65aade0da12a3daf7fc4e5120860162983cd31fb80518ded37b3d6921f",
+                      "source":  "rm27/perception/vision/localization/experiments/calibration.py",
+                      "bytes":  4204
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/experiments/common.py",
+                      "sha256":  "29d69d13f8f2d86b4a37c41c9e6bf38858358a5d7b5e6c805eea379fd2ec5591",
+                      "source":  "rm27/perception/vision/localization/experiments/common.py",
+                      "bytes":  3085
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/experiments/compare.py",
+                      "sha256":  "6f6647c8672d9bf35cb50180c39764b1c1869e23db9f4b6441e3e0a744b4007f",
+                      "source":  "rm27/perception/vision/localization/experiments/compare.py",
+                      "bytes":  3462
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/experiments/dataset.py",
+                      "sha256":  "4de58cb5a1e0c88dcc3cf542b28dbcf059fe42681c06392d27d3b7ace30fd078",
+                      "source":  "rm27/perception/vision/localization/experiments/dataset.py",
+                      "bytes":  8042
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/experiments/evaluation.py",
+                      "sha256":  "843b470b9aea40efb8de16d96a817bc5c9ebe51818b2aa396f87698f7d8e9fa0",
+                      "source":  "rm27/perception/vision/localization/experiments/evaluation.py",
+                      "bytes":  10856
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/experiments/imu_capture.template.json",
+                      "sha256":  "e78d1812fc11c7a1aa243f329e084c090b8cfbce229c698d0d903ef051b8814a",
+                      "source":  "rm27/perception/vision/localization/experiments/imu_capture.template.json",
+                      "bytes":  1345
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/experiments/observers/build.py",
+                      "sha256":  "b67798924c9cfe54bb3c4b65b056e97030631c46063aa440adf255b6e9e689e4",
+                      "source":  "rm27/perception/vision/localization/experiments/observers/build.py",
+                      "bytes":  6698
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/experiments/observers/online_csv.hpp",
+                      "sha256":  "40f9291d6bbaeb5b31b5832c703f9c578ac4da33bedb728c2bb6ac4804d39eb1",
+                      "source":  "rm27/perception/vision/localization/experiments/observers/online_csv.hpp",
+                      "bytes":  1762
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/experiments/online.py",
+                      "sha256":  "19705ce741a9ff2196abf80271f1d3e235f38b1a6b5a1c136dc915fcabcf5a03",
+                      "source":  "rm27/perception/vision/localization/experiments/online.py",
+                      "bytes":  12570
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/experiments/openvins.py",
+                      "sha256":  "40c2a019a45420a69d52ce3d9cb73962cbc52c71172059864b10b745979d5ce6",
+                      "source":  "rm27/perception/vision/localization/experiments/openvins.py",
+                      "bytes":  3336
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/experiments/openvins_runtime.py",
+                      "sha256":  "bca262d535f5e7a08497a90fb21374a23033d8e07caf8e72e9b75680f3329c7d",
+                      "source":  "rm27/perception/vision/localization/experiments/openvins_runtime.py",
+                      "bytes":  18857
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/experiments/public_tum.py",
+                      "sha256":  "6240c683c87d05c6179c54c2992169454de9c638b87cd23f73c803e13b61148a",
+                      "source":  "rm27/perception/vision/localization/experiments/public_tum.py",
+                      "bytes":  9170
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/experiments/run.template.json",
+                      "sha256":  "783f92763f2e62d1bdd310526d00ad7f0291e79c8b35721ce6efe02abb71d2e9",
+                      "source":  "rm27/perception/vision/localization/experiments/run.template.json",
+                      "bytes":  453
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/experiments/runner.py",
+                      "sha256":  "bbf5b73a78f371deb68111ea8cf4e5d86188d4dfc3fb189bf155fff7a9131203",
+                      "source":  "rm27/perception/vision/localization/experiments/runner.py",
+                      "bytes":  11673
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/experiments/trajectory.py",
+                      "sha256":  "c9a68f16854161741e7dc2fc1fcb4fc3cb574f8e50154c97a1ccb5feafe96da5",
+                      "source":  "rm27/perception/vision/localization/experiments/trajectory.py",
+                      "bytes":  5753
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/experiments/transforms.py",
+                      "sha256":  "110710dfd95fdf94ede32c283362be6a2d7908fc24cbd15c1a0473606357c8e4",
+                      "source":  "rm27/perception/vision/localization/experiments/transforms.py",
+                      "bytes":  4454
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/experiments/upstream_contracts.json",
+                      "sha256":  "33d7119889542adc80142bb63e1cd3c5f9b1fd522c5747b5d6b6a32bf7b94e80",
+                      "source":  "rm27/perception/vision/localization/experiments/upstream_contracts.json",
+                      "bytes":  6128
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/experiments/vio.py",
+                      "sha256":  "f21903ea04bbe7f3290503e09fc555bbc9ba2128adb167336fe4f313f0e0e6dd",
+                      "source":  "rm27/perception/vision/localization/experiments/vio.py",
+                      "bytes":  7775
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/experiments/vio_calibration.template.json",
+                      "sha256":  "09cd5d1bb4c630cd9f93cba06649b7f47b2c327fba0ee6d3489db30b67c7bc24",
+                      "source":  "rm27/perception/vision/localization/experiments/vio_calibration.template.json",
+                      "bytes":  500
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/generate_calibration_target.py",
+                      "sha256":  "816696c6f0309e908626a60a82c4e6f45ed5c8066bff7ea24a962e2452923636",
+                      "source":  "rm27/perception/vision/localization/generate_calibration_target.py",
+                      "bytes":  1906
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/manifest.py",
+                      "sha256":  "b4e2961b7dabed80b3387b45d7e4d94f992d8d5e7f502ab064d2d09856b6fa8d",
+                      "source":  "rm27/perception/vision/localization/manifest.py",
+                      "bytes":  11201
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/prepare_vsl2_dataset.py",
+                      "sha256":  "115de6f536b9820fc0fc4712a8b300d2737291f2f2bdfa9051ba2290f9c782f3",
+                      "source":  "rm27/perception/vision/localization/prepare_vsl2_dataset.py",
+                      "bytes":  6995
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/schema.py",
+                      "sha256":  "5bea35279edce9f51aa921d778c07d3c4371621ad71c0928bbfda858e2747146",
+                      "source":  "rm27/perception/vision/localization/schema.py",
+                      "bytes":  14098
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/localization/target_definition.template.json",
+                      "sha256":  "dfb0c157757fa0b196cb869927f850d67a66cd8322131c9d04c46df26281b5f1",
+                      "source":  "rm27/perception/vision/localization/target_definition.template.json",
+                      "bytes":  184
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/M3C_OS04A10_SLAM_实验起步包_v1/M3C_SLAM_experiment_plan_v1/M3C_OS04A10_单目定位实验路线_v1.md",
+                      "sha256":  "cda88d4a33c4dc8228f7e61040c74a8d9a9f34874610dc4fa5a4777ca682638d",
+                      "source":  "rm27/perception/vision/M3C_OS04A10_SLAM_实验起步包_v1/M3C_SLAM_experiment_plan_v1/M3C_OS04A10_单目定位实验路线_v1.md",
+                      "bytes":  34101
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/M3C_OS04A10_SLAM_实验起步包_v1/M3C_SLAM_experiment_plan_v1/SHA256SUMS.txt",
+                      "sha256":  "fa8479b16107f1a0efcd51b545292a12d4b0859ee174ec8e6c5f09b36948bf46",
+                      "source":  "rm27/perception/vision/M3C_OS04A10_SLAM_实验起步包_v1/M3C_SLAM_experiment_plan_v1/SHA256SUMS.txt",
+                      "bytes":  297
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/M3C_OS04A10_SLAM_实验起步包_v1/M3C_SLAM_experiment_plan_v1/collect_m3c_env.sh",
+                      "sha256":  "8de9f62f2dbd539b559e23e921e21da7dca38ff2b70849c4c533b7df3040a6bd",
+                      "source":  "rm27/perception/vision/M3C_OS04A10_SLAM_实验起步包_v1/M3C_SLAM_experiment_plan_v1/collect_m3c_env.sh",
+                      "bytes":  4238
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/M3C_OS04A10_SLAM_实验起步包_v1/M3C_SLAM_experiment_plan_v1/experiment_manifest.template.yaml",
+                      "sha256":  "d64dec1725ad40f2ebad09c65a4e30a96847f01e46e9c0a4520d47f55bd1f9ee",
+                      "source":  "rm27/perception/vision/M3C_OS04A10_SLAM_实验起步包_v1/M3C_SLAM_experiment_plan_v1/experiment_manifest.template.yaml",
+                      "bytes":  2101
+                  },
+                  {
+                      "destination":  "tests/slam_future_fixtures.py",
+                      "sha256":  "1c985978875f8f691d1011aab294e6b638286f093c16276021ae9f53b2cfc7ea",
+                      "source":  "tests/slam_future_fixtures.py",
+                      "bytes":  6906
+                  },
+                  {
+                      "destination":  "tests/test_calibration_capture.py",
+                      "sha256":  "d30e6bd963dbd6b837e2f7f594b479204f172ba461dfb3d6e1b7a458d0cddb42",
+                      "source":  "tests/test_calibration_capture.py",
+                      "bytes":  9550
+                  },
+                  {
+                      "destination":  "tests/test_canonical_dataset.py",
+                      "sha256":  "4e5611dcb89bbfc727e8bd09f748d12bae5b39003fa47f99bb7539dafeaa72bb",
+                      "source":  "tests/test_canonical_dataset.py",
+                      "bytes":  2352
+                  },
+                  {
+                      "destination":  "tests/test_localization_contract.py",
+                      "sha256":  "0b37a87272511dcdd3d398ca84f7afeb50c4dec1e345c5c8c98a9c4cf6a7b85e",
+                      "source":  "tests/test_localization_contract.py",
+                      "bytes":  3976
+                  },
+                  {
+                      "destination":  "tests/test_localization_hardening.py",
+                      "sha256":  "00a0b3d7e97fe1e5c12330cf8c89ec8f4328c04216940a4686cf610401c218e1",
+                      "source":  "tests/test_localization_hardening.py",
+                      "bytes":  6701
+                  },
+                  {
+                      "destination":  "tests/test_slam_future_backends.py",
+                      "sha256":  "b9e113e06f141f328ecd4e7b84ff43b0953c5572a2c24dfc23bb10fbab101aae",
+                      "source":  "tests/test_slam_future_backends.py",
+                      "bytes":  5406
+                  },
+                  {
+                      "destination":  "tests/test_slam_future_dataset.py",
+                      "sha256":  "6ecfa7fd317c6a189ce17d4a11ad6ebb2000b795e69bb6da6f260dfc12bd39fc",
+                      "source":  "tests/test_slam_future_dataset.py",
+                      "bytes":  4968
+                  },
+                  {
+                      "destination":  "tests/test_slam_future_evaluation.py",
+                      "sha256":  "387bcd6c6c25403a43d5f1ce02d4ee1ef5075590e404f32e3d61d2a922b503e5",
+                      "source":  "tests/test_slam_future_evaluation.py",
+                      "bytes":  11462
+                  },
+                  {
+                      "destination":  "tests/test_slam_online.py",
+                      "sha256":  "1f6614e136272119269dac7090f1f38492721a9e720a5791c4b6fd7df44609ec",
+                      "source":  "tests/test_slam_online.py",
+                      "bytes":  12051
+                  },
+                  {
+                      "destination":  "tests/test_slam_public.py",
+                      "sha256":  "546ebf985dd189a47f804a66a7765fb86c312962326fcd33a423e96a215dbe63",
+                      "source":  "tests/test_slam_public.py",
+                      "bytes":  4888
+                  },
+                  {
+                      "destination":  "tests/test_video_analyzer.py",
+                      "sha256":  "dc454375ea9fc9cabca310349eddab38c9b844839191b42af0fcc1b3a7ffc42c",
+                      "source":  "tests/test_video_analyzer.py",
+                      "bytes":  3348
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/docs/FUTURE_INFRASTRUCTURE_REPORT.md",
+                      "sha256":  "8dec95235198f5a94296941d41e75ef142b53bf740a77cb27f11fa1af42c16be",
+                      "source":  "rm27/perception/vision/docs/FUTURE_INFRASTRUCTURE_REPORT.md",
+                      "bytes":  14702
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/docs/FUTURE_INFRASTRUCTURE_STATUS.json",
+                      "sha256":  "1376081e3f49e8a9e8237a2c24aa4c2c178df87be5a5784fc92c67fd29876bd1",
+                      "source":  "rm27/perception/vision/docs/FUTURE_INFRASTRUCTURE_STATUS.json",
+                      "bytes":  997
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/docs/SLAM_RECOVERY_AND_AUDIT.md",
+                      "sha256":  "28162f10ffc1f165f4b7bde399babd3e7cad9cf071bf53c0616ba9b1c6c30f35",
+                      "source":  "rm27/perception/vision/docs/SLAM_RECOVERY_AND_AUDIT.md",
+                      "bytes":  49021
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/docs/VSL-0A_AUDIT.md",
+                      "sha256":  "8dda3ff14707b726bc747ed716ba26da20b6269145d684d529a90cc044e42ee6",
+                      "source":  "rm27/perception/vision/docs/VSL-0A_AUDIT.md",
+                      "bytes":  2444
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/docs/VSL-0B1_CALIBRATION_PREP.md",
+                      "sha256":  "6003bcbc0d1424542b8c63c460f8927e4f9eaedfcfbab9e0dfed305d9d6b65b1",
+                      "source":  "rm27/perception/vision/docs/VSL-0B1_CALIBRATION_PREP.md",
+                      "bytes":  10984
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/docs/VSL-0B1_VERIFICATION.md",
+                      "sha256":  "3541a68b1fcaba1e82fe094700120d6ccee0bb521bdff90595cb59a6157a1f7f",
+                      "source":  "rm27/perception/vision/docs/VSL-0B1_VERIFICATION.md",
+                      "bytes":  12469
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/docs/VSL-0B_CONTRACT.md",
+                      "sha256":  "c439ea2d21f4ec8e02669f7db721c7eb447176d8b1e5aad3a8bf22a11690ca4e",
+                      "source":  "rm27/perception/vision/docs/VSL-0B_CONTRACT.md",
+                      "bytes":  1856
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/docs/VSL-1A_0921.md",
+                      "sha256":  "b27069ef1b3adb4abce74f207096cd5ffb840e8a44bdaf3eb39f7388b8c698a1",
+                      "source":  "rm27/perception/vision/docs/VSL-1A_0921.md",
+                      "bytes":  8798
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/docs/VSL-1_GATE_REVIEW_0921.md",
+                      "sha256":  "90505de72b2f2b8b2c56f4c56091dcf249c05b298265610e30953c72f3d35863",
+                      "source":  "rm27/perception/vision/docs/VSL-1_GATE_REVIEW_0921.md",
+                      "bytes":  2235
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/docs/VSL-2_CALIBRATION_PROCEDURE.md",
+                      "sha256":  "cb80c2d674d288b8a149dab98df4904fd8ee66ed3d2970aed4ce75857e1490d9",
+                      "source":  "rm27/perception/vision/docs/VSL-2_CALIBRATION_PROCEDURE.md",
+                      "bytes":  9360
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/docs/VSL-2_CONTROLLED_RECORDING_PROTOCOL.md",
+                      "sha256":  "fda687e519fd0cf1cc6640857f108304244526f417e951c4be9bd96fa6ab3761",
+                      "source":  "rm27/perception/vision/docs/VSL-2_CONTROLLED_RECORDING_PROTOCOL.md",
+                      "bytes":  2008
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/docs/VSL-2_GATE_STATUS.json",
+                      "sha256":  "4f2d362364e8dcb15bcc80681619c0af25359ce993e0fc9c43035fc368d2b93d",
+                      "source":  "rm27/perception/vision/docs/VSL-2_GATE_STATUS.json",
+                      "bytes":  1127
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/docs/VSL-3P1_ONLINE_STATE_REPORT.md",
+                      "sha256":  "269026dabe3921b173b92473796e91df0b5da08b2006e496adda72d84d747cfd",
+                      "source":  "rm27/perception/vision/docs/VSL-3P1_ONLINE_STATE_REPORT.md",
+                      "bytes":  16155
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/docs/VSL-3P_PUBLIC_BACKEND_QUALIFICATION.md",
+                      "sha256":  "60e4bfe7f195f4b7371675168fbf43de58232eb966e62307938ebb9574c83261",
+                      "source":  "rm27/perception/vision/docs/VSL-3P_PUBLIC_BACKEND_QUALIFICATION.md",
+                      "bytes":  16864
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/docs/VSL-3P_STATUS.json",
+                      "sha256":  "a005387e608e95e01498c864ce7a90ebaaa64f19cb2366ceb35305fed0f65f74",
+                      "source":  "rm27/perception/vision/docs/VSL-3P_STATUS.json",
+                      "bytes":  793
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/docs/VSL-3_EXPERIMENT_HARNESS.md",
+                      "sha256":  "112f207c0f9218ada45ccb5c082731fa83fa0fef6176aff8e2dbfc645b2a7cfb",
+                      "source":  "rm27/perception/vision/docs/VSL-3_EXPERIMENT_HARNESS.md",
+                      "bytes":  17295
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/docs/VSL-4_M3C_BENCHMARK_PLAN.md",
+                      "sha256":  "868f4ca8e2561895b4e532299843d6d94a9d20c6c5eb55ad3028e2f487e245f1",
+                      "source":  "rm27/perception/vision/docs/VSL-4_M3C_BENCHMARK_PLAN.md",
+                      "bytes":  5513
+                  },
+                  {
+                      "destination":  "rm27/perception/vision/docs/calibration_artifact.template.json",
+                      "sha256":  "24cc90c1c1ce9fb75f5b8f9b1216e459e39d95042b375b600764ba759d3c5229",
+                      "source":  "rm27/perception/vision/docs/calibration_artifact.template.json",
+                      "bytes":  981
+                  },
+                  {
+                      "destination":  "tools/maixcam2/frontend_bench.cpp",
+                      "sha256":  "ac4f364174321e230ce9b0ff9267ff76112ff92836024371db1648ab0c1fc07c",
+                      "source":  ".maixpy/frontend_bench.cpp",
+                      "bytes":  3218
+                  },
+                  {
+                      "destination":  "tools/maixcam2/historical/benchmark_frontend.py",
+                      "sha256":  "f4a98ec224fe47b0fcf03fb52e6451479f8a8109826e9c47704f5c5a5157402f",
+                      "source":  ".maixpy/benchmark_frontend.py",
+                      "bytes":  5232
+                  },
+                  {
+                      "destination":  "tools/maixcam2/historical/prepare_gray_bench.py",
+                      "sha256":  "3b47bddde2e9c1a204e469a4238048f31633c0d2e4e467f3321344cde009f5b7",
+                      "source":  ".maixpy/prepare_gray_bench.py",
+                      "bytes":  781
+                  },
+                  {
+                      "destination":  "reports/2026-10-07-python/RESULT.md",
+                      "sha256":  "f5eaf8b1b0637272be237300d5ab69bdbae9b0279e6f46f5be32611beebcfaa6",
+                      "source":  ".maixpy/board-benchmark-20261007/RESULT.md",
+                      "bytes":  1816
+                  },
+                  {
+                      "destination":  "reports/2026-10-07-python/report.json",
+                      "sha256":  "a14b971662626959ab5bfe4455864c95c7d3e3224c677d1a4a90929e42f86028",
+                      "source":  ".maixpy/board-benchmark-20261007/report.json",
+                      "bytes":  111568
+                  },
+                  {
+                      "destination":  "examples/calibration/os04a10-20261007/calibration_result.json",
+                      "sha256":  "1ef473ffb4dbf024ff682b41907e6f499397199168fa49dc82fd9890365191f8",
+                      "source":  "artifacts/m3c-calibration-20261007/calibration_result.json",
+                      "bytes":  19085
+                  },
+                  {
+                      "destination":  "examples/calibration/os04a10-20261007/fit_protocol.json",
+                      "sha256":  "9f66661d59fbd4c3a4727fdf7468219104bf216938ac2d6a4bdd2a74e77fd6c9",
+                      "source":  "artifacts/m3c-calibration-20261007/fit_protocol.json",
+                      "bytes":  1037
+                  },
+                  {
+                      "destination":  "reports/2026-10-07-cpp/cpp336.json",
+                      "sha256":  "f75a661c2c563c006c92ae556b23dbbe46dc4edfe4983ff1aecafefbd4e94f99",
+                      "source":  ".maixpy/board-cpp-benchmark-20261007/cpp336.json",
+                      "bytes":  338
+                  },
+                  {
+                      "destination":  "reports/2026-10-07-cpp/cpp336_raw.json",
+                      "sha256":  "5aa6588aed7621b923ddb1d35656f0cb93b628c6bce298d77488fbb1c500fec1",
+                      "source":  ".maixpy/board-cpp-benchmark-20261007/cpp336_raw.json",
+                      "bytes":  331
+                  },
+                  {
+                      "destination":  "reports/2026-10-07-cpp/cpp336_thread1.json",
+                      "sha256":  "202b1175445474f99a48be224a0e7f161ae77214b0a3b85c6f18664843dcd99d",
+                      "source":  ".maixpy/board-cpp-benchmark-20261007/cpp336_thread1.json",
+                      "bytes":  330
+                  },
+                  {
+                      "destination":  "reports/2026-10-07-cpp/cpp672_raw.json",
+                      "sha256":  "53e6b3a943919146d327ee02eceeaf643b78c55cd40decd2a9c54bd7f5765e70",
+                      "source":  ".maixpy/board-cpp-benchmark-20261007/cpp672_raw.json",
+                      "bytes":  337
+                  },
+                  {
+                      "destination":  "reports/2026-10-07-cpp/RESULT.md",
+                      "sha256":  "8d37426661c5eaa65896070d2b9069c9f8cc857ec9762f766f98cc8603763b6a",
+                      "source":  ".maixpy/board-cpp-benchmark-20261007/RESULT.md",
+                      "bytes":  2648
+                  }
+              ]
+}
