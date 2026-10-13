@@ -52,10 +52,26 @@ was rerun: **176 passed / zero skips**, exit 0 (42.51 s). This adds one publicat
 - Repository-local author/committer: `shiuhou <uhshi371@connect.hkust-gz.edu.cn>`;
   global identity and shared history are not changed.
 - Remote was empty at initial clone and rechecked before preparing publication.
-- Final staging review, clean-clone test and remote-tip equality are required before reporting publication complete.
+- Staged whitespace check passed with the explicit cr-at-eol attribute; 97 tracked files were reviewed.
+- Independent clean clone of `b4a69a57bed39b4359958701a36247a286eb578a`:
+  `git clone --no-hardlinks <new-repository-local-path> <fresh-temp-directory>` then
+  `py -3 -B -m pytest tests -q` with plugin autoload disabled.
+  Observed **176 passed / zero skips**, exit 0 (20.64 s); clone working tree clean.
+  This proves the tested published package does not require the original private source/data directory.
+  Subsequent changes are documentation only; source/tests/import inventory are unchanged.
+- Remote-tip equality will be checked after the requested normal push; do not infer push success from a local commit.
 - Initial plain Git whitespace check treated the byte-preserved CRLF as trailing whitespace.
   Repeating with cr-at-eol isolated two extra EOF blank lines in NEW test files; those were removed.
   The archived source/report bytes were not normalized. The attribute makes this check explicit.
+
+## Concurrent source-worktree changes
+
+The initial snapshot/import was taken before separate changes appeared in the source worktree.
+During final source parity recheck, `backends.py` was absent; a read-only Git status confirmed
+many SLAM deletions and VIO scope edits while source HEAD still remained `74d44b0`.
+Those actions were not made by this publication task and were not restored, staged or overwritten.
+The clean-clone/hash tests verify the frozen new repository, not a claim that the original working tree
+still equals its earlier snapshot. This is why the explicit import manifest is authoritative here.
 
 ## Not verified here
 

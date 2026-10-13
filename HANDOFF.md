@@ -8,7 +8,8 @@
 - Commit: see this clone's `git rev-parse HEAD`; publication contains the imported source state below.
 - Source commit: `rm27_slam-vio` `74d44b09c65e2a839b74d834756f0d178207d679`.
 - Preparation workspace: `C:/Users/USER/OneDrive/RM27/rm27_slam_maixcam2`.
-- Source workspace was dirty before preparation and remains preserved; this is a separate repository.
+- Source workspace was dirty before preparation; this task did not edit it. Separate later SLAM deletions
+  and VIO scope edits were observed and preserved without interference. This is a separate repository.
 
 ## Task objective
 
@@ -42,6 +43,8 @@ py -3 -B -m rm27.perception.vision.localization.experiments.runner --help
 176 passed / zero skips in the final local run; pytest exit 0. Both CLI help commands exit 0.
 Import SHA256/size preservation is part of the suite. Details and publication checks:
 [docs/VALIDATION.md](docs/VALIDATION.md).
+An independent clean clone of code commit `b4a69a57bed39b4359958701a36247a286eb578a` also passed all 176 tests
+with zero skips, exit 0 (20.64 s), and a clean working tree. Later publication edits are documentation only.
 
 ## Failed attempts
 
@@ -51,6 +54,9 @@ One source search used a PowerShell glob in rg and was corrected to directory/fi
 no files were changed by that command. Empty remote clone warned that no commits existed, as expected.
 Initial Git whitespace inspection used a default incompatible with byte-preserved CRLF;
 cr-at-eol isolated two new-test EOF blank lines, removed without touching imported history.
+Final comparison against the live source worktree stopped when backends.py was missing;
+read-only status confirmed concurrent SLAM deletions/VIO edits. The frozen import remained intact,
+as verified in the clean clone; no source cleanup was undone or attributed to this task.
 
 ## Decisions and rationale
 
@@ -90,6 +96,6 @@ No PX4 connection is needed for the pure monocular experiment.
 
 ## Rollback point
 
-Original `rm27_slam-vio` and its dirty work remain untouched.
+This task did not modify original `rm27_slam-vio`; its separately edited dirty work must not be restored by this task.
 This is additive publication into an initially empty repository; use a normal future revert for changes,
 not destructive cleanup or force-push. Local artifacts are not discarded or moved out of the source workspace.
