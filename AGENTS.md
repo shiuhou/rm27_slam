@@ -12,3 +12,11 @@
 - The raw-inclusive historical manifests/reports are not a promise that a fresh clone includes all experiments.
 - HANDOFF.md is reviewable project transfer; VAULT_UPDATE.md is only a proposal. Do not access/write the Vault by default.
 - Work in small attributable changes, test relevant code, preserve unrelated work, and push only when requested.
+
+## Common engineering standard
+
+Apply `.agents/docs/engineering.md` for the shared engineering process. This
+file remains the SLAM-specific adapter: dataset, camera calibration, timestamp
+and scale limits, provenance of imported files, and the offline-versus-device
+qualification boundary stay local to this repository. Do not move SLAM rules
+into the common file or treat software replay as hardware qualification.
