@@ -29,7 +29,14 @@ cd rm27_slam
 
 原有共用 localization 包按字节保留，包含少量 OpenVINS 接口文件以维持完整依赖边界。
 本仓库的研究入口是单目 Stella / ORB，不发布 VIO 主线的 ROS2 构建、PX4/UART 控制器或 IMU 实验。
-当前 VIO 主线继续留在 [rm27_slam-vio](https://github.com/shiuhou/rm27_slam-vio)，两仓库 push 不会互相同步。
+当前 VIO 主线位于独立的 [rm27_vio](https://github.com/shiuhou/rm27_vio)，两仓库 push 不会互相同步。历史导入材料中的 `rm27_slam-vio` 名称仅作为来源保留。
+
+## 如何理解进度
+
+本仓库的当前边界以 [STATUS](docs/STATUS.md) 和 [HANDOFF](HANDOFF.md) 为准。
+板端 KLT 的帧率是前端稀疏跟踪测量，不是完整 SLAM 后端帧率；主机数据集或合成
+测试成功不证明板端实时定位、米制尺度、相机曝光时序或飞行可用性。
+历史实验的原始录像与第三方后端不随 clone 分发，缺少输入时不能声称已复现。
 
 ## 主机软件测试
 
